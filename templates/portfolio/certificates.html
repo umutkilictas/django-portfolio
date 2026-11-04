@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Sertifikalar | {{ SITE_OWNER }}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="mb-4">
+                    <span class="badge-tech mb-2">Yetkinlik Belgeleri</span>
+                    <h1 class="display-6 fw-bold">Sertifikalar</h1>
+                    <p class="text-secondary">Tamamladığım mesleki eğitimler ve aldığım sertifikalar.</p>
+                </div>
+
+                <div class="row g-3">
+                    {% for cert in certificates %}
+                        <div class="col-12">
+                            <div class="custom-card">
+                                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                                    <div>
+                                        <h2 class="h5 fw-bold mb-1">{{ cert.name }}</h2>
+                                        <p class="small text-muted mb-0">{{ cert.issuer }}</p>
+                                    </div>
+                                    <span class="badge-tech">
+                                        {% if cert.issue_date %}
+                                            {{ cert.issue_date|date:"F Y" }}
+                                        {% else %}
+                                            Onaylı
+                                        {% endif %}
+                                    </span>
+                                </div>
+
+                                {% if cert.description %}
+                                    <p class="small text-secondary mb-3">{{ cert.description }}</p>
+                                {% endif %}
+
+                                <div class="d-flex flex-wrap gap-3 align-items-center pt-2 border-top border-secondary-subtle">
+                                    {% if cert.credential_url %}
+                                        <a href="{{ cert.credential_url }}" target="_blank" rel="noopener noreferrer" class="small fw-semibold">
+                                            Sertifikayı Doğrula &rarr;
+                                        </a>
+                                    {% endif %}
+                                    {% if cert.certificate_file %}
+                                        <a href="{{ cert.certificate_file.url }}" target="_blank" rel="noopener noreferrer" class="small fw-semibold text-muted">
+                                            Belgeyi Görüntüle (PDF) &rarr;
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="col-12">
+                            <p class="text-muted">Kayıtlı sertifika bulunmamaktadır.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

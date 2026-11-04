@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}Ana Sayfa | {{ SITE_OWNER }} - Bilgisayar Mühendisi{% endblock %}
+
+{% block content %}
+<!-- Karşılama / Hero Alanı -->
+<section class="py-5 border-bottom border-secondary-subtle">
+    <div class="container py-lg-4">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-9">
+                <span class="badge-tech mb-3">Bilgisayar Mühendisi &amp; Python Geliştirici</span>
+                <h1 class="display-5 fw-bold mb-3">Merhaba, ben {{ SITE_OWNER }}.</h1>
+                <p class="lead mb-4 text-secondary">
+                    Gazi Üniversitesi Bilgisayar Mühendisliği mezunuyum. Python ve Django odaklı, modern, anlaşılır ve temiz mimariye sahip yazılım projeleri geliştiriyorum.
+                </p>
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <a href="{% url 'portfolio:project_list' %}" class="btn btn-primary-custom">Projelerimi İncele</a>
+                    <a href="{% url 'portfolio:contact' %}" class="btn btn-outline-custom">İletişime Geç</a>
+                    {% if GITHUB_URL %}
+                        <a href="{{ GITHUB_URL }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom" aria-label="GitHub Profilini Aç">GitHub</a>
+                    {% endif %}
+                    {% if LINKEDIN_URL %}
+                        <a href="{{ LINKEDIN_URL }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom" aria-label="LinkedIn Profilini Aç">LinkedIn</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hakkımda Özeti -->
+<section class="py-5">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-6">
+                <h2 class="h4 fw-bold mb-3">Hakkımda</h2>
+                <p>
+                    Lisans eğitimim boyunca algoritma analizi, veri yapıları ve yazılım mühendisliği prensipleri üzerine yoğunlaştım. Geliştirme süreçlerinde okunabilir, sürdürülebilir ve gereksiz karmaşıklıktan uzak kod yapılarını benimsiyorum.
+                </p>
+                <p class="mb-3">
+                    Öğrenmeye ve kendimi geliştirmeye devam eden bir mühendis olarak, modern web mimarileri ve uygulamalı makine öğrenimi alanlarında projeler üretiyorum.
+                </p>
+                <a href="{% url 'portfolio:about' %}" class="fw-semibold small">Daha Fazlası &rarr;</a>
+            </div>
+
+            <!-- Teknik Yetkinlikler (Gruplu ve Abartısız) -->
+            <div class="col-lg-6">
+                <h2 class="h4 fw-bold mb-3">Teknik Yetkinlikler</h2>
+                <div class="mb-3">
+                    <h3 class="h6 fw-semibold text-muted mb-2">Programlama &amp; Backend</h3>
+                    <div>
+                        <span class="badge-tech">Python</span>
+                        <span class="badge-tech">Django</span>
+                        <span class="badge-tech">SQLite</span>
+                        <span class="badge-tech">SQL</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <h3 class="h6 fw-semibold text-muted mb-2">Frontend &amp; Arayüz</h3>
+                    <div>
+                        <span class="badge-tech">HTML5</span>
+                        <span class="badge-tech">CSS3</span>
+                        <span class="badge-tech">Bootstrap 5</span>
+                        <span class="badge-tech">JavaScript (Temel)</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="h6 fw-semibold text-muted mb-2">Araçlar &amp; Uygulamalı Alanlar</h3>
+                    <div>
+                        <span class="badge-tech">Git &amp; GitHub</span>
+                        <span class="badge-tech">OpenCV (Görüntü İşleme)</span>
+                        <span class="badge-tech">GNN / PyTorch (Grafik Ağları)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Öne Çıkan Projeler -->
+<section class="py-5 border-top border-secondary-subtle">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <span class="badge-tech mb-1">Seçilmiş Çalışmalar</span>
+                <h2 class="h3 fw-bold mb-0">Öne Çıkan Projeler</h2>
+            </div>
+            <a href="{% url 'portfolio:project_list' %}" class="fw-semibold small">Tüm Projeler ({% if featured_projects %}{{ featured_projects|length }}+{% endif %}) &rarr;</a>
+        </div>
+
+        <div class="row g-4">
+            {% for project in featured_projects %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="custom-card h-100 d-flex flex-column">
+                        <h3 class="h5 fw-bold mb-2">{{ project.title }}</h3>
+                        <p class="small flex-grow-1 text-secondary">
+                            {{ project.short_description }}
+                        </p>
+                        
+                        <div class="mb-3">
+                            {% for tech in project.get_technologies_list %}
+                                <span class="badge-tech">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mt-auto pt-3 border-top border-secondary-subtle d-flex justify-content-between align-items-center">
+                            <div>
+                                {% if project.github_url %}
+                                    <a href="{{ project.github_url }}" target="_blank" rel="noopener noreferrer" class="small fw-semibold me-3">GitHub</a>
+                                {% endif %}
+                                {% if project.live_demo_url %}
+                                    <a href="{{ project.live_demo_url }}" target="_blank" rel="noopener noreferrer" class="small fw-semibold text-success">Canlı Demo</a>
+                                {% endif %}
+                            </div>
+                            <a href="{{ project.get_absolute_url }}" class="small text-muted">Detaylar &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">Henüz öne çıkan proje bulunmuyor.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Deneyim ve Eğitim Özeti -->
+<section class="py-5 border-top border-secondary-subtle">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-6">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h4 fw-bold mb-0">Eğitim</h2>
+                    <a href="{% url 'portfolio:experience' %}" class="small fw-semibold">Tümü &rarr;</a>
+                </div>
+                {% for edu in recent_education %}
+                    <div class="custom-card mb-3">
+                        <h3 class="h6 fw-bold mb-1">{{ edu.degree }}</h3>
+                        <p class="small text-muted mb-1">{{ edu.institution }}</p>
+                        <p class="small text-secondary mb-0">{{ edu.description|truncatewords:20 }}</p>
+                    </div>
+                {% empty %}
+                    <p class="small text-muted">Kayıtlı eğitim bulunmuyor.</p>
+                {% endfor %}
+            </div>
+
+            <div class="col-md-6">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="h4 fw-bold mb-0">Sertifikalar</h2>
+                    <a href="{% url 'portfolio:certificates' %}" class="small fw-semibold">Tümü &rarr;</a>
+                </div>
+                {% for cert in recent_certificates %}
+                    <div class="custom-card mb-3">
+                        <h3 class="h6 fw-bold mb-1">{{ cert.name }}</h3>
+                        <p class="small text-muted mb-1">{{ cert.issuer }}</p>
+                        <p class="small text-secondary mb-0">{{ cert.description|truncatewords:20 }}</p>
+                    </div>
+                {% empty %}
+                    <p class="small text-muted">Kayıtlı sertifika bulunmuyor.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- İletişim Çağrısı (CTA) -->
+<section class="py-5 border-top border-secondary-subtle">
+    <div class="container text-center py-3">
+        <h2 class="h3 fw-bold mb-3">Birlikte Çalışalım</h2>
+        <p class="text-secondary mx-auto mb-4" style="max-width: 600px;">
+            Yazılım geliştirme projeleri, staj/iş fırsatları veya teknik fikir alışverişi için benimle dilediğiniz zaman iletişime geçebilirsiniz.
+        </p>
+        <a href="{% url 'portfolio:contact' %}" class="btn btn-primary-custom px-4 py-2">İletişim Bilgilerini Görüntüle</a>
+    </div>
+</section>
+{% endblock %}

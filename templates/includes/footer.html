@@ -1,0 +1,31 @@
+<footer class="footer-custom mt-auto py-4">
+    <div class="container">
+        <div class="row align-items-center gy-3">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0 text-muted">
+                    &copy; {% now "Y" %} {{ SITE_OWNER }}. Tüm hakları saklıdır.
+                </p>
+                <small class="text-muted">Python &amp; Django ile geliştirilmiştir.</small>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <div class="social-links">
+                    {% if GITHUB_URL %}
+                        <a href="{{ GITHUB_URL }}" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub">
+                            GitHub
+                        </a>
+                    {% endif %}
+                    {% if LINKEDIN_URL %}
+                        <a href="{{ LINKEDIN_URL }}" target="_blank" rel="noopener noreferrer" class="social-link ms-3" title="LinkedIn">
+                            LinkedIn
+                        </a>
+                    {% endif %}
+                    {% if CONTACT_EMAIL %}
+                        <a href="mailto:{{ CONTACT_EMAIL }}" class="social-link ms-3" title="E-posta">
+                            E-posta
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

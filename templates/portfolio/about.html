@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Hakkımda | {{ SITE_OWNER }}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <span class="badge-tech mb-3">Özgeçmiş &amp; Yaklaşım</span>
+                <h1 class="display-6 fw-bold mb-4">Hakkımda</h1>
+                
+                <div class="custom-card mb-4">
+                    <h2 class="h5 fw-bold mb-3">Eğitim ve Arka Plan</h2>
+                    <p>
+                        Gazi Üniversitesi Bilgisayar Mühendisliği mezunuyum. Lisans eğitimim süresince algoritmalar, veri yapıları, yazılım mühendisliği ilkeleri ve veri tabanı yönetimi konularında sağlam bir temel edindim.
+                    </p>
+                    <p class="mb-0">
+                        Yazılım geliştirme sürecinde sürdürülebilir, okunabilir ve test edilebilir kod üretmeyi önceliklendiriyorum.
+                    </p>
+                </div>
+
+                <div class="custom-card mb-4">
+                    <h2 class="h5 fw-bold mb-3">Teknik Odak</h2>
+                    <p>
+                        Ağırlıklı olarak Python ekosistemi ve Django framework'ü üzerinde çalışmalarımı sürdürüyorum. Web mimarisi, veri tabanı modelleme, ORM kullanımı ve güvenli web uygulamaları geliştirme konularında kendimi sürekli geliştiriyorum.
+                    </p>
+                    <p class="mb-0">
+                        Ayrıca görüntü işleme (OpenCV) ve makine öğrenimi alanlarındaki temel konseptleri uyguladığım pratik projeler geliştirdim.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

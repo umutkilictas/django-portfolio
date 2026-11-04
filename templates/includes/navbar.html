@@ -1,0 +1,44 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'portfolio:home' %}">
+                <span class="brand-accent">&lt;/&gt;</span> {{ SITE_OWNER }}
+            </a>
+            
+            <div class="d-flex align-items-center order-lg-last ms-2">
+                <!-- Tema Değiştirici Buton -->
+                <button type="button" class="btn btn-theme-toggle" id="themeToggleBtn" aria-label="Açık/Koyu Tema Değiştir" title="Temayı Değiştir">
+                    <span id="themeToggleIcon">🌙</span>
+                </button>
+
+                <!-- Mobil Menü Butonu -->
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Menüyü aç/kapat">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'portfolio:home' %}">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'portfolio:about' %}">Hakkımda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'project' in request.resolver_match.url_name %}active{% endif %}" href="{% url 'portfolio:project_list' %}">Projeler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'experience' %}active{% endif %}" href="{% url 'portfolio:experience' %}">Deneyim &amp; Eğitim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'certificates' %}active{% endif %}" href="{% url 'portfolio:certificates' %}">Sertifikalar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'portfolio:contact' %}">İletişim</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

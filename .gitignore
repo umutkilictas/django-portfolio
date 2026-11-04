@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Sanal Ortam (Virtual Environment)
+.venv/
+venv/
+ENV/
+
+# Çevre Değişkenleri ve Gizli Bilgiler
+.env
+
+# Django SQLite Veritabanı
+*.sqlite3
+db.sqlite3
+
+# Statik ve Medya Derlemeleri (Production collectstatic)
+staticfiles/
+media/
+
+# IDE & Editör
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# İşletim Sistemi
+Thumbs.db
+Desktop.ini
+.DS_Store
