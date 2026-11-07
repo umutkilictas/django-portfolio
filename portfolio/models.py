@@ -93,6 +93,13 @@ class Education(models.Model):
         return f"{self.degree} ({self.institution})"
 
     @property
+    def clean_degree(self):
+        """'Lise Diploması' gibi gereksiz ekleri sadeleştirerek 'Lise' döner."""
+        if 'lise' in self.degree.lower():
+            return 'Lise'
+        return self.degree
+
+    @property
     def gpa_label(self):
         """Lisans ve lise için uygun akademik not etiketi döner."""
         if not self.gpa:

@@ -120,21 +120,21 @@ class Command(BaseCommand):
             start_date=date(2021, 9, 1),
             end_date=date(2025, 6, 30),
             display_order=1,
-            description='Yazılım mühendisliği, algoritmalar ve veri yapıları, nesne yönelimli programlama, ilişkisel veri tabanları, gömülü sistemler ve yapay zekâ temelleri.'
+            description=''
         )
         self.stdout.write(self.style.SUCCESS(f"Eğitim eklendi: {edu1.degree} ({edu1.institution})"))
 
         edu2 = Education.objects.create(
             institution='Develi Borsa İstanbul Fen Lisesi',
             faculty='',
-            degree='Lise Diploması',
+            degree='Lise',
             gpa='87.53 / 100',
             location='Kayseri',
             date_text='2016 – 2020',
             start_date=date(2016, 9, 1),
             end_date=date(2020, 6, 30),
             display_order=2,
-            description='Matematik ve fen bilimleri ağırlıklı lise eğitimi.'
+            description=''
         )
         self.stdout.write(self.style.SUCCESS(f"Eğitim eklendi: {edu2.degree} ({edu2.institution})"))
 

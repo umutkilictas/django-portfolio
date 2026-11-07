@@ -7,52 +7,46 @@
     <div class="container">
         <!-- Başlık Bölümü -->
         <div class="row mb-5">
-            <div class="col-lg-9 mx-auto">
+            <div class="col-lg-8 mx-auto">
                 <span class="badge-tech mb-2">Kariyer &amp; Akademik Geçmiş</span>
                 <h1 class="display-6 fw-bold mb-2">Deneyim &amp; Eğitim</h1>
-                <p class="text-secondary">
-                    Yazılım geliştirme, gömülü sistemler ve yapay zekâ odaklı aday mühendislik ve staj deneyimlerim ile akademik geçmişimin kronolojik akışı.
+                <p class="text-secondary mb-0">
+                    Gömülü yazılım, test otomasyonu ve web teknolojileri odaklı mühendislik deneyimlerim ile eğitim geçmişim.
                 </p>
             </div>
         </div>
 
-        <div class="row col-lg-9 mx-auto gy-5">
-            <!-- 1. BÖLÜM: İŞ & STAJ DENEYİMİ (ZAMAN ÇİZELGESİ) -->
-            <div class="col-12">
-                <div class="mb-4">
-                    <h2 class="h4 fw-bold mb-1">İş &amp; Staj Deneyimi</h2>
-                    <span class="text-muted small">Kronolojik Sıralama</span>
-                </div>
+        <div class="row col-lg-8 mx-auto">
+            <!-- 1. BÖLÜM: İŞ & STAJ DENEYİMİ -->
+            <div class="col-12 mb-5">
+                <h2 class="h4 fw-bold mb-4">İş &amp; Staj Deneyimi</h2>
 
                 <div class="timeline">
                     {% for exp in experiences %}
                         <div class="timeline-item">
-                            <!-- Zaman Çizelgesi Noktası -->
+                            <!-- Çizgi Üzerindeki Nokta -->
                             <div class="timeline-dot"></div>
 
-                            <div class="custom-card">
-                                <!-- Pozisyon, Kurum ve Tarih -->
-                                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
-                                    <div>
-                                        <h3 class="h5 fw-bold mb-1" style="color: var(--accent-color);">{{ exp.title }}</h3>
-                                        <h4 class="h6 mb-0 fw-semibold" style="color: var(--text-primary);">{{ exp.organization }}</h4>
-                                    </div>
-                                    <div class="text-md-end">
-                                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle small fw-medium">
-                                            {% if exp.date_text %}
-                                                {{ exp.date_text }}
-                                            {% elif exp.end_date %}
-                                                {{ exp.start_date|date:"F Y" }} – {{ exp.end_date|date:"F Y" }}
-                                            {% endif %}
-                                        </span>
-                                        {% if exp.location %}
-                                            <div class="small text-muted mt-1">{{ exp.location }}</div>
-                                        {% endif %}
-                                    </div>
-                                </div>
+                            <!-- Noktanın Yanındaki Tarih ve Konum -->
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                <span class="timeline-date-badge">
+                                    {% if exp.date_text %}
+                                        {{ exp.date_text }}
+                                    {% elif exp.end_date %}
+                                        {{ exp.start_date|date:"F Y" }} – {{ exp.end_date|date:"F Y" }}
+                                    {% endif %}
+                                </span>
+                                {% if exp.location %}
+                                    <span class="text-secondary small">&bull; {{ exp.location }}</span>
+                                {% endif %}
+                            </div>
 
-                                <!-- Görev Maddeleri (Bullet Points) -->
-                                <ul class="mb-0 mt-3 ps-3 text-secondary small" style="line-height: 1.7;">
+                            <!-- Pozisyon, Kurum ve Detaylar -->
+                            <div class="timeline-content">
+                                <h3 class="h5 fw-bold mb-1" style="color: var(--accent-color);">{{ exp.title }}</h3>
+                                <h4 class="h6 fw-semibold mb-3" style="color: var(--text-primary);">{{ exp.organization }}</h4>
+
+                                <ul class="mb-0 ps-3 text-secondary" style="line-height: 1.7; font-size: 0.925rem;">
                                     {% for point in exp.get_bullet_points %}
                                         <li class="mb-1">{{ point }}</li>
                                     {% empty %}
@@ -67,49 +61,39 @@
                 </div>
             </div>
 
-            <!-- 2. BÖLÜM: EĞİTİM (ZAMAN ÇİZELGESİ) -->
+            <!-- 2. BÖLÜM: EĞİTİM -->
             <div class="col-12 pt-4 border-top border-secondary-subtle">
-                <div class="mb-4">
-                    <h2 class="h4 fw-bold mb-1">Eğitim</h2>
-                    <span class="text-muted small">Akademik Süreç</span>
-                </div>
+                <h2 class="h4 fw-bold mb-4">Eğitim</h2>
 
                 <div class="timeline">
                     {% for edu in educations %}
                         <div class="timeline-item">
-                            <!-- Zaman Çizelgesi Noktası -->
+                            <!-- Çizgi Üzerindeki Nokta -->
                             <div class="timeline-dot"></div>
 
-                            <div class="custom-card">
-                                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
-                                    <div>
-                                        <!-- Bölüm / Derece -->
-                                        <h3 class="h5 fw-bold mb-1" style="color: var(--text-primary);">{{ edu.degree }}</h3>
+                            <!-- Noktanın Yanındaki Tarih ve Konum -->
+                            <div class="d-flex align-items-center flex-wrap gap-2">
+                                <span class="timeline-date-badge">
+                                    {{ edu.date_text }}
+                                </span>
+                                {% if edu.location %}
+                                    <span class="text-secondary small">&bull; {{ edu.location }}</span>
+                                {% endif %}
+                            </div>
 
-                                        <!-- Kurum & Fakülte -->
-                                        <p class="small text-muted mb-2 fw-medium">
-                                            {{ edu.institution }}
-                                            {% if edu.faculty %}&bull; {{ edu.faculty }}{% endif %}
-                                        </p>
+                            <!-- Bölüm / Derece, Kurum ve GANO -->
+                            <div class="timeline-content">
+                                <h3 class="h5 fw-bold mb-1" style="color: var(--text-primary);">{{ edu.clean_degree }}</h3>
+                                <p class="small text-secondary mb-2 fw-medium">
+                                    {{ edu.institution }}
+                                    {% if edu.faculty %}&bull; {{ edu.faculty }}{% endif %}
+                                </p>
 
-                                        <!-- Not Ortalaması / GANO Rozeti -->
-                                        {% if edu.gpa_label %}
-                                            <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold small">
-                                                {{ edu.gpa_label }}
-                                            </span>
-                                        {% endif %}
-                                    </div>
-
-                                    <!-- Tarih ve Konum -->
-                                    <div class="text-md-end">
-                                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle small fw-semibold">
-                                            {{ edu.date_text }}
-                                        </span>
-                                        {% if edu.location %}
-                                            <div class="small text-muted mt-1">{{ edu.location }}</div>
-                                        {% endif %}
-                                    </div>
-                                </div>
+                                {% if edu.gpa_label %}
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold small">
+                                        {{ edu.gpa_label }}
+                                    </span>
+                                {% endif %}
                             </div>
                         </div>
                     {% empty %}
