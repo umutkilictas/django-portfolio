@@ -1,11 +1,14 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand fw-bold d-inline-flex align-items-center gap-2" href="{% url 'portfolio:home' %}">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" class="flex-shrink-0" aria-hidden="true" style="display: inline-block; vertical-align: middle;">
-                    <text x="8" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="52px" font-weight="700" fill="currentColor">u<tspan fill="#38bdf8">.</tspan></text>
-                </svg>
-                <span>{{ SITE_OWNER }}</span>
+            <a class="navbar-brand fw-bold d-inline-flex align-items-center" href="{% url 'portfolio:home' %}">
+                <span class="brand-logo-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true">
+                        <text x="8" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="52px" font-weight="700" fill="currentColor">u<tspan fill="#38bdf8">.</tspan></text>
+                    </svg>
+                </span>
+                <span class="brand-divider"></span>
+                <span class="brand-name">{{ SITE_OWNER }}</span>
             </a>
             
             <div class="d-flex align-items-center order-lg-last ms-2">
