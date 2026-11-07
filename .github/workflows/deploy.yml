@@ -48,6 +48,19 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Python 3.11 Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Bağımlılıkları yükle
+        run: |
+          pip install -r requirements.txt
+
+      - name: Statik Dosyaları Derle (collectstatic)
+        run: python manage.py collectstatic --noinput
+
       - name: Passenger Otomatik Restart Dosyasını Güncelle
         run: |
           mkdir -p tmp
@@ -68,7 +81,6 @@ jobs:
             **/.env
             **/db.sqlite3
             **/media/**
-            **/staticfiles/**
             **/__pycache__/**
             README.md
             document.md
