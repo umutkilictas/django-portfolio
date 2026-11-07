@@ -212,6 +212,44 @@ a:hover {
 }
 
 /* ==========================================================================
+   Zaman Çizelgesi (Timeline)
+   ========================================================================== */
+
+.timeline {
+    position: relative;
+    padding-left: 1.75rem;
+    border-left: 2px solid var(--border-color);
+    margin-left: 0.5rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.25rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -1.75rem;
+    top: 0.4rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    border: 3px solid var(--bg-primary);
+    transform: translateX(-8px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: translateX(-8px) scale(1.25);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* ==========================================================================
    Footer
    ========================================================================== */
 
@@ -245,5 +283,21 @@ a:hover {
     .btn-primary-custom, .btn-outline-custom {
         width: 100%;
         text-align: center;
+    }
+
+    .timeline {
+        padding-left: 1.25rem;
+        margin-left: 0.25rem;
+    }
+
+    .timeline-dot {
+        left: -1.25rem;
+        width: 12px;
+        height: 12px;
+        transform: translateX(-7px);
+    }
+
+    .timeline-item:hover .timeline-dot {
+        transform: translateX(-7px) scale(1.2);
     }
 }

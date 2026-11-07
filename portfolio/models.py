@@ -92,6 +92,15 @@ class Education(models.Model):
     def __str__(self):
         return f"{self.degree} ({self.institution})"
 
+    @property
+    def gpa_label(self):
+        """Lisans ve lise için uygun akademik not etiketi döner."""
+        if not self.gpa:
+            return ""
+        if 'lise' in self.degree.lower() or 'lise' in self.institution.lower():
+            return f"Mezuniyet Puanı: {self.gpa}"
+        return f"GANO: {self.gpa}"
+
 
 class Certificate(models.Model):
     """
