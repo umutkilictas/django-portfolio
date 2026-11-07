@@ -218,13 +218,13 @@ a:hover {
 .timeline {
     position: relative;
     border-left: 2px solid var(--border-color);
-    margin-left: 0.75rem;
-    padding-left: 2rem;
+    margin-left: 1rem;
     padding-top: 0.5rem;
 }
 
 .timeline-item {
     position: relative;
+    padding-left: 2rem;
     padding-bottom: 3.5rem;
 }
 
@@ -234,8 +234,8 @@ a:hover {
 
 .timeline-dot {
     position: absolute;
-    left: -8px;
-    top: 5px;
+    left: -7px;
+    top: 6px;
     width: 14px;
     height: 14px;
     border-radius: 50%;
@@ -302,14 +302,18 @@ a:hover {
     }
 
     .timeline {
+        margin-left: 0.75rem;
+    }
+
+    .timeline-item {
         padding-left: 1.5rem;
-        margin-left: 0.5rem;
+        padding-bottom: 2.5rem;
     }
 
     .timeline-dot {
         left: -7px;
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
     }
 
     .timeline-item:hover .timeline-dot {
