@@ -136,9 +136,16 @@
                 </div>
                 {% for edu in recent_education %}
                     <div class="custom-card mb-3">
-                        <h3 class="h6 fw-bold mb-1">{{ edu.degree }}</h3>
-                        <p class="small text-muted mb-1">{{ edu.institution }}</p>
-                        <p class="small text-secondary mb-0">{{ edu.description|truncatewords:20 }}</p>
+                        <div class="d-flex justify-content-between align-items-start mb-1 flex-wrap gap-1">
+                            <div>
+                                <h3 class="h6 fw-bold mb-1">{{ edu.degree }}</h3>
+                                <p class="small text-muted mb-0">{{ edu.institution }}</p>
+                            </div>
+                            {% if edu.gpa %}
+                                <span class="badge bg-success-subtle text-success border border-success-subtle small fw-semibold">{{ edu.gpa }}</span>
+                            {% endif %}
+                        </div>
+                        <small class="text-secondary">{{ edu.date_text }} &bull; {{ edu.location }}</small>
                     </div>
                 {% empty %}
                     <p class="small text-muted">Kayıtlı eğitim bulunmuyor.</p>

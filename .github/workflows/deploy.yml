@@ -1,0 +1,74 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  # -------------------------------------------------------------
+  # 1. Aşama: CI (Continuous Integration) - Otomatik Testler
+  # -------------------------------------------------------------
+  test:
+    name: Run Django Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu depodan çek
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Bağımlılıkları yükle
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Django Sistem Kontrolü
+        run: python manage.py check
+
+      - name: Birim Testleri Çalıştır
+        run: python manage.py test
+
+  # -------------------------------------------------------------
+  # 2. Aşama: CD (Continuous Deployment) - Otomatik Dağıtım
+  # -------------------------------------------------------------
+  deploy:
+    name: Deploy to Live Server
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu depodan çek
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Passenger Restart Dosyasını Hazırla
+        run: |
+          mkdir -p tmp
+          touch tmp/restart.txt
+
+      - name: Dosyaları FTP ile Cenuta'ya Senkronize Et
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.venv/**
+            **/.env
+            **/db.sqlite3
+            **/media/**
+            **/staticfiles/**
+            **/__pycache__/**
+            README.md
+            document.md

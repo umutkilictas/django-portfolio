@@ -44,10 +44,12 @@ class Project(models.Model):
 
 class Experience(models.Model):
     """
-    İş deneyimleri ve bağımsız yazılım geliştirme çalışmaları.
+    İş deneyimleri ve aday mühendislik / staj çalışmaları.
     """
     title = models.CharField(max_length=200, verbose_name="Pozisyon / Rol")
-    organization = models.CharField(max_length=200, verbose_name="Kurum / Organizasyon / Çalışma Türü")
+    organization = models.CharField(max_length=200, verbose_name="Kurum / Şirket Adı")
+    location = models.CharField(max_length=100, blank=True, verbose_name="Konum / Şehir")
+    date_text = models.CharField(max_length=100, blank=True, verbose_name="Tarih Aralığı (Örn: Eylül 2024 – Aralık 2024)")
     description = models.TextField(verbose_name="Açıklama ve Sorumluluklar")
     start_date = models.DateField(blank=True, null=True, verbose_name="Başlangıç Tarihi")
     end_date = models.DateField(blank=True, null=True, verbose_name="Bitiş Tarihi")
@@ -62,14 +64,22 @@ class Experience(models.Model):
     def __str__(self):
         return f"{self.title} - {self.organization}"
 
+    def get_bullet_points(self):
+        """Açıklamadaki her satırı ayrı bir madde imi olarak döner."""
+        return [line.strip().lstrip('-•* ') for line in self.description.splitlines() if line.strip()]
+
 
 class Education(models.Model):
     """
-    Örgün ve akademik eğitim geçmişi.
+    Lisans ve lise akademik eğitim geçmişi.
     """
     institution = models.CharField(max_length=200, verbose_name="Eğitim Kurumu / Üniversite")
-    degree = models.CharField(max_length=200, verbose_name="Derece / Bölüm (Örn: Bilgisayar Mühendisliği Lisans)")
-    description = models.TextField(blank=True, verbose_name="Açıklama / Alınan Temel Dersler")
+    degree = models.CharField(max_length=200, verbose_name="Derece / Bölüm")
+    faculty = models.CharField(max_length=200, blank=True, verbose_name="Fakülte")
+    gpa = models.CharField(max_length=50, blank=True, verbose_name="Not Ortalaması / GANO / Mezuniyet Derecesi")
+    location = models.CharField(max_length=100, blank=True, verbose_name="Konum / Şehir")
+    date_text = models.CharField(max_length=100, blank=True, verbose_name="Yıllar (Örn: 2021 – 2025)")
+    description = models.TextField(blank=True, verbose_name="Açıklama / Detay")
     start_date = models.DateField(blank=True, null=True, verbose_name="Başlangıç Tarihi")
     end_date = models.DateField(blank=True, null=True, verbose_name="Mezuniyet / Bitiş Tarihi")
     display_order = models.PositiveIntegerField(default=0, verbose_name="Görüntülenme Sırası")
@@ -92,6 +102,7 @@ class Certificate(models.Model):
     description = models.TextField(blank=True, verbose_name="Açıklama / Kazanılan Beceriler")
     issue_date = models.DateField(blank=True, null=True, verbose_name="Veriliş Tarihi")
     credential_url = models.URLField(blank=True, verbose_name="Doğrulama Bağlantısı (Varsa)")
+    certificate_no = models.CharField(max_length=100, blank=True, verbose_name="Sertifika Numarası (Varsa)")
     certificate_file = models.FileField(upload_to='certificates/', blank=True, null=True, verbose_name="Sertifika Belgesi (PDF/Resim)")
     display_order = models.PositiveIntegerField(default=0, verbose_name="Görüntülenme Sırası")
     is_published = models.BooleanField(default=True, verbose_name="Yayınlandı mı?")

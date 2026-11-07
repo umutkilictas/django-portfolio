@@ -13,8 +13,8 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Experience)
 class ExperienceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'organization', 'is_current', 'start_date', 'end_date', 'display_order')
-    list_filter = ('is_current',)
+    list_display = ('title', 'organization', 'location', 'date_text', 'is_current', 'display_order')
+    list_filter = ('is_current', 'organization')
     search_fields = ('title', 'organization', 'description')
     list_editable = ('display_order', 'is_current')
     ordering = ('display_order', '-start_date')
@@ -22,7 +22,7 @@ class ExperienceAdmin(admin.ModelAdmin):
 
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
-    list_display = ('degree', 'institution', 'start_date', 'end_date', 'display_order')
+    list_display = ('degree', 'institution', 'gpa', 'date_text', 'display_order')
     search_fields = ('degree', 'institution', 'description')
     list_editable = ('display_order',)
     ordering = ('display_order', '-end_date')
@@ -30,8 +30,8 @@ class EducationAdmin(admin.ModelAdmin):
 
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ('name', 'issuer', 'issue_date', 'is_published', 'display_order')
+    list_display = ('name', 'issuer', 'certificate_no', 'issue_date', 'is_published', 'display_order')
     list_filter = ('is_published', 'issuer')
-    search_fields = ('name', 'issuer', 'description')
+    search_fields = ('name', 'issuer', 'certificate_no', 'description')
     list_editable = ('is_published', 'display_order')
     ordering = ('display_order', '-issue_date')

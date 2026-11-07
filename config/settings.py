@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-portfolio-umutkilictas
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 't', 'yes')
 
-ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if h.strip()]
+ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,umutkilictas.tr,www.umutkilictas.tr').split(',') if h.strip()]
 
 
 # Application definition
@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Site Sahibi ve İletişim Merkezi Tanımları
 PORTFOLIO_OWNER = 'Umut Kılıçtaş'
 PORTFOLIO_GITHUB_URL = 'https://github.com/umutkilictas'
-PORTFOLIO_LINKEDIN_URL = 'https://linkedin.com/umut-kilictas'
+PORTFOLIO_LINKEDIN_URL = 'https://linkedin.com/in/umut-kilictas'
 PORTFOLIO_EMAIL = os.getenv('CONTACT_EMAIL', '')
 
 # Production Ortamı Güvenlik Yapılandırması (DEBUG=False iken aktifleşir)
