@@ -48,10 +48,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Passenger Restart Dosyasını Hazırla
+      - name: Passenger Otomatik Restart Dosyasını Güncelle
         run: |
           mkdir -p tmp
-          touch tmp/restart.txt
+          echo "$(date +%s)" > tmp/restart.txt
 
       - name: Dosyaları FTP ile Cenuta'ya Senkronize Et
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

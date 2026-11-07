@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    /* Tarayıcı açık temadaysa siyah, koyu temadaysa beyaz olur */
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-weight: 700;
+      font-size: 52px;
+      fill: #0f172a; /* Açık tema sekme rengi */
+    }
+    .dot {
+      fill: #38bdf8; /* Sitemizin gök mavisi imza rengi */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      text {
+        fill: #f8fafc; /* Koyu tema sekme rengi */
+      }
+    }
+  </style>
+
+  <!-- Kutu/Çerçeve YOK: Doğrudan saf, şeffaf zemin üzerinde tipografi -->
+  <text x="8" y="48">u<tspan class="dot">.</tspan></text>
+</svg>
