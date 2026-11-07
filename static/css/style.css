@@ -241,12 +241,6 @@ a:hover {
     border-radius: 50%;
     background-color: var(--accent-color);
     box-shadow: 0 0 0 4px var(--bg-primary);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.timeline-item:hover .timeline-dot {
-    transform: scale(1.25);
-    box-shadow: 0 0 0 4px var(--bg-primary), 0 0 12px var(--accent-color);
 }
 
 .timeline-date-badge {
@@ -314,9 +308,5 @@ a:hover {
         left: -7px;
         width: 14px;
         height: 14px;
-    }
-
-    .timeline-item:hover .timeline-dot {
-        transform: scale(1.2);
     }
 }
