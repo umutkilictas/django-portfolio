@@ -97,9 +97,22 @@ a:hover {
     letter-spacing: -0.01em;
 }
 
-.navbar-custom .brand-accent {
+.navbar-custom .brand-mark {
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: var(--text-primary);
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.navbar-custom .brand-mark .brand-dot {
     color: var(--accent-color);
-    font-family: monospace;
+}
+
+.navbar-custom .navbar-brand:hover .brand-mark {
+    transform: translateY(-1px);
 }
 
 .navbar-custom .nav-link {

@@ -1,8 +1,9 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{% url 'portfolio:home' %}">
-                <span class="brand-accent">&lt;/&gt;</span> {{ SITE_OWNER }}
+            <a class="navbar-brand fw-bold d-inline-flex align-items-center gap-2" href="{% url 'portfolio:home' %}">
+                <span class="brand-mark">u<span class="brand-dot">.</span></span>
+                <span>{{ SITE_OWNER }}</span>
             </a>
             
             <div class="d-flex align-items-center order-lg-last ms-2">
