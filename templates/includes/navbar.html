@@ -2,7 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand fw-bold d-inline-flex align-items-center gap-2" href="{% url 'portfolio:home' %}">
-                <span class="brand-mark">u<span class="brand-dot">.</span></span>
+                <svg class="brand-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="30" height="30" aria-label="u. logosu">
+                    <text x="6" y="48" class="logo-u">u<tspan class="logo-dot">.</tspan></text>
+                </svg>
                 <span>{{ SITE_OWNER }}</span>
             </a>
             

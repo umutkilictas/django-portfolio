@@ -97,22 +97,42 @@ a:hover {
     letter-spacing: -0.01em;
 }
 
-.navbar-custom .brand-mark {
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: -1px;
-    line-height: 1;
-    color: var(--text-primary);
+.brand-logo-svg {
+    width: 30px;
+    height: 30px;
     display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
     transition: transform 0.2s ease;
 }
 
-.navbar-custom .brand-mark .brand-dot {
-    color: var(--accent-color);
+.brand-logo-svg text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 52px;
 }
 
-.navbar-custom .navbar-brand:hover .brand-mark {
-    transform: translateY(-1px);
+/* Koyu Temada: Beyaz 'u' + Parlak Gök Mavisi '.' */
+.brand-logo-svg .logo-u {
+    fill: #f8fafc;
+    transition: fill 0.25s ease;
+}
+
+.brand-logo-svg .logo-dot {
+    fill: #38bdf8;
+}
+
+/* Açık Temada: Siyah/Koyu 'u' + Parlak Gök Mavisi '.' */
+[data-theme="light"] .brand-logo-svg .logo-u {
+    fill: #0f172a;
+}
+
+[data-theme="light"] .brand-logo-svg .logo-dot {
+    fill: #38bdf8;
+}
+
+.navbar-custom .navbar-brand:hover .brand-logo-svg {
+    transform: scale(1.08);
 }
 
 .navbar-custom .nav-link {
