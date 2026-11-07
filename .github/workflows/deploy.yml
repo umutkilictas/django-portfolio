@@ -83,4 +83,5 @@ jobs:
             **/media/**
             **/__pycache__/**
             README.md
-            document.md
+            README.en.md
+            LICENSE

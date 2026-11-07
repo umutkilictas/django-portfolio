@@ -54,12 +54,12 @@ class Command(BaseCommand):
             slug='mvc-cv-project',
             defaults={
                 'title': 'MVC Kişisel Portfolyo Web Uygulaması',
-                'short_description': 'ASP.NET Core MVC, Entity Framework Core ve SQL kullanılarak katmanlı mimari prensiplerine uygun olarak geliştirilen dinamik web uygulaması.',
+                'short_description': 'ASP.NET MVC 5, Entity Framework ve SQL kullanılarak katmanlı mimari prensiplerine uygun olarak geliştirilen dinamik web uygulaması.',
                 'description': (
-                    "ASP.NET Core MVC ve Entity Framework Core kullanılarak katmanlı mimari prensiplerine uygun, "
+                    "ASP.NET MVC 5 ve Entity Framework kullanılarak katmanlı mimari prensiplerine uygun, "
                     "CRUD operasyonları barındıran dinamik bir kişisel portfolyo ve yönetim sistemi uygulaması."
                 ),
-                'technologies': 'C#, ASP.NET Core MVC, Entity Framework Core, SQL',
+                'technologies': 'C#, ASP.NET MVC 5, Entity Framework, SQL',
                 'github_url': 'https://github.com/umutkilictas/MVC-Cv-Project',
                 'live_demo_url': '',
                 'featured': True,
