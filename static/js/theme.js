@@ -1,53 +1,48 @@
 /**
  * Tema Yönetimi (Açık / Koyu Tema)
- * LocalStorage ve sistem tercihi destekli
+ *
+ * Bootstrap 5.3'ün yerleşik "data-bs-theme" özniteliğini kullanır.
+ * İlk tema, <head> içindeki küçük script ile sayfa çizilmeden önce uygulanır;
+ * bu dosya yalnızca tema butonunu ve ikonunu yönetir.
  */
 
 (function () {
     const THEME_STORAGE_KEY = 'portfolio_theme';
     const htmlElement = document.documentElement;
 
-    // 1. Tercih edilen temayı belirle
-    function getPreferredTheme() {
-        const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-        if (storedTheme) {
-            return storedTheme;
-        }
-        // Sistem tercihini kontrol et
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        return systemPrefersDark ? 'dark' : 'light';
+    function currentTheme() {
+        return htmlElement.getAttribute('data-bs-theme') === 'light' ? 'light' : 'dark';
     }
 
-    // 2. Temayı sayfaya uygula
+    // Buton, gidilecek temanın ikonunu gösterir (koyudayken güneş, açıktayken ay)
+    function syncToggle(theme) {
+        const btn = document.getElementById('themeToggleBtn');
+        if (!btn) return;
+        const sun = btn.querySelector('.icon-sun');
+        const moon = btn.querySelector('.icon-moon');
+        if (sun) sun.classList.toggle('d-none', theme !== 'dark');
+        if (moon) moon.classList.toggle('d-none', theme !== 'light');
+        const label = theme === 'dark' ? 'Açık temaya geç' : 'Koyu temaya geç';
+        btn.setAttribute('aria-label', label);
+        btn.setAttribute('title', label);
+    }
+
     function applyTheme(theme) {
-        htmlElement.setAttribute('data-theme', theme);
-        const iconSpan = document.getElementById('themeToggleIcon');
-        if (iconSpan) {
-            iconSpan.textContent = theme === 'dark' ? '🌙' : '☀️';
-        }
+        htmlElement.setAttribute('data-bs-theme', theme);
+        syncToggle(theme);
     }
 
-    // İlk yüklemede temayı hemen ayarla
-    const currentTheme = getPreferredTheme();
-    applyTheme(currentTheme);
-
-    // DOM yüklendiğinde buton dinleyicisini bağla
     document.addEventListener('DOMContentLoaded', function () {
+        syncToggle(currentTheme());
+
         const toggleBtn = document.getElementById('themeToggleBtn');
-        const iconSpan = document.getElementById('themeToggleIcon');
-
-        // İkonu mevcut temaya göre güncelle
-        if (iconSpan) {
-            iconSpan.textContent = htmlElement.getAttribute('data-theme') === 'dark' ? '🌙' : '☀️';
-        }
-
         if (toggleBtn) {
             toggleBtn.addEventListener('click', function () {
-                const activeTheme = htmlElement.getAttribute('data-theme');
-                const nextTheme = activeTheme === 'dark' ? 'light' : 'dark';
-                
+                const nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
                 applyTheme(nextTheme);
-                localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+                try {
+                    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+                } catch (e) {}
             });
         }
     });

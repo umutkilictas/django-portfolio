@@ -7,9 +7,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <span class="badge-tech mb-3">Özgeçmiş &amp; Yaklaşım</span>
-                <h1 class="display-6 fw-bold mb-4">Hakkımda</h1>
-                
+                <div class="mb-4">
+                    <div class="section-kicker">Özgeçmiş &amp; Yaklaşım</div>
+                    <h1 class="display-6 fw-bold mb-2">Hakkımda</h1>
+                    <p class="lead-readable mb-0">
+                        Mühendislik temelleri, yazılım geliştirme anlayışım ve odaklandığım teknoloji alanları.
+                    </p>
+                </div>
+
                 <div class="custom-card mb-4">
                     <h2 class="h5 fw-bold mb-3">Eğitim ve Arka Plan</h2>
                     <p>
@@ -28,6 +33,11 @@
                     <p class="mb-0">
                         Ayrıca görüntü işleme (OpenCV) ve makine öğrenimi alanlarındaki temel konseptleri uyguladığım pratik projeler geliştirdim.
                     </p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2 pt-2">
+                    <a href="{% url 'portfolio:experience' %}" class="btn btn-primary-custom">Deneyim &amp; Eğitim Geçmişim &rarr;</a>
+                    <a href="{% url 'portfolio:project_list' %}" class="btn btn-outline-custom">Projelerimi İncele</a>
                 </div>
             </div>
         </div>
