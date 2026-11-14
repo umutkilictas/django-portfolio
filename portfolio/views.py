@@ -4,17 +4,15 @@ from .models import Project, Experience, Education, Certificate
 def home_view(request):
     """
     Ana sayfa: Karşılama, öne çıkan projeler (en fazla 3 adet),
-    özet eğitim, deneyim ve sertifikalar.
+    özet eğitim ve sertifikalar.
     """
     featured_projects = Project.objects.filter(is_published=True, featured=True)[:3]
     recent_education = Education.objects.all()[:2]
-    recent_experience = Experience.objects.all()[:2]
     recent_certificates = Certificate.objects.filter(is_published=True)[:2]
 
     context = {
         'featured_projects': featured_projects,
         'recent_education': recent_education,
-        'recent_experience': recent_experience,
         'recent_certificates': recent_certificates,
     }
     return render(request, 'portfolio/home.html', context)

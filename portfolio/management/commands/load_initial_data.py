@@ -9,7 +9,7 @@ class Command(BaseCommand):
         self.stdout.write("Başlangıç verileri güncelleniyor...")
 
         # 1. Projeler
-        p1, _ = Project.objects.get_or_create(
+        Project.objects.get_or_create(
             slug='android-gcn-malware-detection',
             defaults={
                 'title': 'Android Malware Detection with GCN/GNN',
@@ -31,7 +31,7 @@ class Command(BaseCommand):
             }
         )
 
-        p2, _ = Project.objects.get_or_create(
+        Project.objects.get_or_create(
             slug='opencv-smart-presence-monitor',
             defaults={
                 'title': 'OpenCV Smart Presence Monitor',
@@ -50,7 +50,7 @@ class Command(BaseCommand):
             }
         )
 
-        p3, _ = Project.objects.get_or_create(
+        Project.objects.get_or_create(
             slug='mvc-cv-project',
             defaults={
                 'title': 'MVC Kişisel Portfolyo Web Uygulaması',

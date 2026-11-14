@@ -1,12 +1,9 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
 from portfolio.models import Project, Experience, Education, Certificate
 
 class PortfolioTests(TestCase):
     def setUp(self):
-        self.client = Client()
-
         # Test için yayınlanmış proje
         self.published_project = Project.objects.create(
             title="Açık Kaynak Test Projesi",

@@ -31,7 +31,6 @@
     --bg-primary: #0b1120;          /* Derin gece laciverti / Slate 950 */
     --bg-secondary: #111827;        /* İkincil yüzey */
     --bg-card: #131c31;             /* Kart yüzeyi */
-    --bg-card-subtle: rgba(30, 41, 59, 0.45);
     --text-primary: #f8fafc;        /* Slate 50 */
     --text-secondary: #94a3b8;      /* Slate 400 */
     --text-muted-custom: #64748b;   /* Slate 500 */
@@ -55,7 +54,6 @@
     --bg-primary: #f8fafc;          /* Slate 50 */
     --bg-secondary: #f1f5f9;        /* Slate 100 */
     --bg-card: #ffffff;             /* Beyaz kart */
-    --bg-card-subtle: #f8fafc;
     --text-primary: #0f172a;        /* Slate 900 */
     --text-secondary: #475569;      /* Slate 600 */
     --text-muted-custom: #64748b;   /* Slate 500 */
@@ -488,11 +486,5 @@ a:hover {
     .timeline-item {
         padding-left: 1.5rem;
         padding-bottom: 2.5rem;
-    }
-
-    .timeline-dot {
-        left: -7px;
-        width: 12px;
-        height: 12px;
     }
 }
